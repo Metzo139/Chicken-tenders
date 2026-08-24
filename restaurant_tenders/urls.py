@@ -17,3 +17,4 @@ if settings.DEBUG:
 admin.site.site_header = "Chicken Tenders Dakar - Administration"  # En-tête principal en haut
 admin.site.site_title = "Admin Chicken Tenders"                     # Titre de l'onglet du navigateur
 admin.site.index_title = "Gestion du Restaurant & Commandes"       # Sous-titre de la page d'accueil admin
+
