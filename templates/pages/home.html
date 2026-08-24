@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil - Le Meilleur Poulet Croustillant de Dakar{% endblock %}
+
+{% block content %}
+<!-- Section Hero -->
+<section class="bg-dark text-white py-5 text-center position-relative" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));">
+    <div class="container py-4">
+        <h1 class="display-4 fw-bold text-warning mb-3">Les Meilleurs Tenders de Dakar 🍗</h1>
+        <p class="lead mb-4">Poulet frais, panure ultra-croustillante et sauces maison préparées à la commande.</p>
+        <a href="#menu" class="btn btn-ct-red btn-lg fw-bold rounded-pill px-4 shadow">
+            Découvrir le Menu
+        </a>
+    </div>
+</section>
+
+<!-- Grille des plats en vedette -->
+<section id="menu" class="container py-5">
+    <h2 class="text-center fw-bold mb-4">Nos Produits Phares</h2>
+    
+    <div class="row g-4">
+        {% for product in featured_products %}
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 220px; object-fit: cover;">
+                {% else %}
+                <div class="bg-secondary text-white text-center py-5" style="height: 220px;">
+                    <i class="bi bi-image fs-1 d-block mt-3"></i> Image non disponible
+                </div>
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold">{{ product.name }}</h5>
+                    <p class="card-text text-muted small flex-grow-1">{{ product.description|truncatewords:15 }}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <span class="fs-5 fw-bold text-ct-red">{{ product.price }} FCFA</span>
+                        <a href="{% url 'menu:product_detail' product.id %}" class="btn-add-circle shadow-sm text-decoration-none">
+                            <i class="bi bi-plus-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted fs-5">Aucun produit n'est disponible pour le moment.</p>
+            <p class="small text-secondary">Ajoutez vos premiers plats depuis le panneau d'administration !</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

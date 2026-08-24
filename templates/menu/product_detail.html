@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} - Chicken Tenders Dakar{% endblock %}
+
+{% block content %}
+<div class="container py-4" style="max-width: 700px;">
+    <a href="{% url 'pages:home' %}" class="btn btn-light rounded-circle shadow-sm mb-3">
+        <i class="bi bi-arrow-left fs-5"></i>
+    </a>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+        {% if product.image %}
+        <img src="{{ product.image.url }}" class="w-100" style="height: 280px; object-fit: cover;" alt="{{ product.name }}">
+        {% endif %}
+        
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h1 class="h3 fw-bold mb-0">{{ product.name }}</h1>
+                <span class="fs-4 fw-bold" style="color: var(--orange-primary, #FF7A00);">{{ product.price }} FCFA</span>
+            </div>
+            
+            <p class="text-muted small mb-4">{{ product.description }}</p>
+
+            <!-- Formulaire d'ajout au panier -->
+            <form action="{% url 'orders:cart_add' product.id %}" method="post">
+                {% csrf_token %}
+
+                <!-- Sélection de la Sauce -->
+                {% if sauces %}
+                <div class="mb-4">
+                    <label class="fw-bold mb-2 d-block">Choisissez votre sauce :</label>
+                    {% for sauce in sauces %}
+                    <div class="form-check p-2 border rounded-3 mb-2 bg-light">
+                        <input class="form-check-input ms-1 me-2" type="radio" name="sauce" id="sauce_{{ sauce.id }}" value="{{ sauce.id }}" {% if forloop.first %}checked{% endif %}>
+                        <label class="form-check-label w-100 fw-medium" for="sauce_{{ sauce.id }}">
+                            {{ sauce.name }}
+                            {% if sauce.additional_price > 0 %}
+                            <span class="text-muted small">(+{{ sauce.additional_price }} FCFA)</span>
+                            {% endif %}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Sélection des Extras -->
+                {% if extras %}
+                <div class="mb-4">
+                    <label class="fw-bold mb-2 d-block">Ajoutez des extras :</label>
+                    {% for extra in extras %}
+                    <div class="form-check p-2 border rounded-3 mb-2 bg-light">
+                        <input class="form-check-input ms-1 me-2" type="checkbox" name="extras" id="extra_{{ extra.id }}" value="{{ extra.id }}">
+                        <label class="form-check-label w-100 fw-medium" for="extra_{{ extra.id }}">
+                            {{ extra.name }}
+                            <span class="text-muted small">(+{{ extra.price }} FCFA)</span>
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Quantité -->
+                <div class="d-flex align-items-center gap-3 my-4">
+                    <label class="fw-bold mb-0">Quantité :</label>
+                    <input type="number" name="quantity" value="1" min="1" max="20" class="form-control text-center fw-bold rounded-pill" style="width: 90px;">
+                </div>
+
+                <button type="submit" class="btn btn-orange w-100 py-3 rounded-pill fw-bold shadow-sm">
+                    Ajouter au panier <i class="bi bi-bag-plus ms-1"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

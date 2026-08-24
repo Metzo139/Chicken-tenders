@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}À propos - Chicken Tenders Dakar{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+            <h1 class="fw-bold mb-3 text-ct-red">Notre Passion du Croustillant 🔥</h1>
+            <p class="lead">Né à Dakar, Chicken Tenders s'est donné pour mission d'offrir le poulet frit le plus savoureux et le plus croustillant de la capitale.</p>
+            <p class="text-muted">Chaque filet de poulet est mariné dans nos épices secrètes, enrobé à la main et frit à la perfection dès la réception de votre commande. Nous privilégions des ingrédients frais et locaux pour garantir une qualité irréprochable.</p>
+            
+            <div class="row text-center g-3 mt-4">
+                <div class="col-4">
+                    <div class="p-3 border rounded-3 bg-white shadow-sm">
+                        <h3 class="fw-bold text-ct-red mb-0">100%</h3>
+                        <small class="text-muted">Poulet Frais</small>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="p-3 border rounded-3 bg-white shadow-sm">
+                        <h3 class="fw-bold text-ct-red mb-0">Fait</h3>
+                        <small class="text-muted">Maison</small>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="p-3 border rounded-3 bg-white shadow-sm">
+                        <h3 class="fw-bold text-ct-red mb-0">Express</h3>
+                        <small class="text-muted">Livraison</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center">
+            <div class="p-5 bg-white shadow-sm rounded-4 border">
+                <i class="bi bi-shop display-1 text-ct-red mb-3 d-block"></i>
+                <h4 class="fw-bold">Commandez en ligne, recevez en minutes !</h4>
+                <p class="text-muted">Notre service de livraison couvre les principales zones de Dakar.</p>
+                <a href="{% url 'pages:home' %}" class="btn btn-ct-red rounded-pill fw-bold px-4">Voir la carte</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

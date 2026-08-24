@@ -1,0 +1,130 @@
+:root {
+    --bg-warm: #FAF2EA;
+    --orange-primary: #FF7A00;
+    --orange-hover: #E06B00;
+    --card-bg: #FFFFFF;
+    --text-dark: #1E1E1E;
+    --text-muted: #7C7C80;
+    --badge-bg: #FFF0E5;
+}
+
+body {
+    background-color: var(--bg-warm);
+    color: var(--text-dark);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Bannière Hero */
+.hero-card {
+    background: linear-gradient(135deg, #FFF0E1 0%, #FDE3CC 100%);
+    border-radius: 28px;
+    border: none;
+    overflow: hidden;
+}
+
+.btn-orange {
+    background-color: var(--orange-primary);
+    color: #FFFFFF;
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-weight: 600;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn-orange:hover {
+    background-color: var(--orange-hover);
+    color: #FFFFFF;
+}
+
+.badge-deal {
+    background-color: #FFFFFF;
+    color: var(--orange-primary);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Catégories circulaires */
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.category-icon-bg {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    font-size: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.category-card:hover .category-icon-bg,
+.category-card.active .category-icon-bg {
+    background-color: var(--orange-primary);
+    color: #FFFFFF;
+}
+
+.category-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+/* Cartes de Produits */
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 22px;
+    border: none;
+    padding: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.product-fav-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.btn-add-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--orange-primary);
+    color: #FFFFFF;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+/* Offre Flash */
+.flash-offer-card {
+    background-color: #FFF0E1;
+    border-radius: 22px;
+    border: none;
+}

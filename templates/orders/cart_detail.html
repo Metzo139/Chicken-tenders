@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mon Panier - Chicken Tenders Dakar{% endblock %}
+
+{% block content %}
+<div class="container py-4" style="max-width: 800px;">
+    
+    <!-- En-tête -->
+    <div class="d-flex align-items-center mb-4">
+        <a href="{% url 'pages:home' %}" class="btn btn-light rounded-circle shadow-sm me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+            <i class="bi bi-arrow-left fs-5"></i>
+        </a>
+        <h1 class="h4 fw-bold mb-0 text-dark">Mon Panier 🛒</h1>
+    </div>
+
+    {% if cart %}
+    <!-- Liste des articles -->
+    <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white">
+        <div class="table-responsive">
+            <table class="table table-borderless align-middle mb-0">
+                <thead class="border-bottom">
+                    <tr class="text-muted small">
+                        <th>Produit</th>
+                        <th class="text-center">Qté</th>
+                        <th class="text-end">Prix</th>
+                        <th class="text-end">Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                    <tr class="border-bottom">
+                        <!-- Image et détails du produit -->
+                        <td class="py-3">
+                            <div class="d-flex align-items-center">
+                                {% if item.image_url %}
+                                <img src="{{ item.image_url }}" class="rounded-3 me-3" style="width: 60px; height: 60px; object-fit: cover;" alt="{{ item.product_name }}">
+                                {% else %}
+                                <div class="bg-light rounded-3 me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="bi bi-bag-fill text-muted fs-4"></i>
+                                </div>
+                                {% endif %}
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-dark">{{ item.product_name }}</h6>
+                                    {% if item.sauce_name %}
+                                    <small class="text-muted d-block">
+                                        <i class="bi bi-cup-straw me-1"></i>Sauce : {{ item.sauce_name }}
+                                    </small>
+                                    {% endif %}
+                                    {% if item.extras %}
+                                    <small class="text-muted d-block">
+                                        <i class="bi bi-plus-circle me-1"></i>Extras : 
+                                        {% for ext in item.extras %}
+                                            {{ ext.name }}{% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </td>
+
+                        <!-- Quantité -->
+                        <td class="text-center fw-bold text-dark">
+                            <span class="badge bg-light text-dark border rounded-pill px-3 py-2 fs-6">
+                                {{ item.quantity }}
+                            </span>
+                        </td>
+
+                        <!-- Prix unitaire -->
+                        <td class="text-end text-muted small">
+                            {{ item.unit_price }} FCFA
+                        </td>
+
+                        <!-- Prix total de la ligne -->
+                        <td class="text-end fw-bold text-dark">
+                            {{ item.total_price }} FCFA
+                        </td>
+
+                        <!-- Action supprimer -->
+                        <td class="text-end">
+                            <a href="{% url 'orders:cart_remove' item.item_key %}" class="btn btn-sm btn-light text-danger rounded-circle p-2 shadow-sm" title="Supprimer du panier">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Récapitulatif et passage de commande -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+            <div>
+                <span class="text-muted small d-block">Montant total à payer :</span>
+                <span class="fs-3 fw-bold" style="color: var(--orange-primary, #FF7A00);">
+                    {{ cart.get_total_price }} FCFA
+                </span>
+            </div>
+            <a href="{% url 'orders:checkout' %}" class="btn btn-orange rounded-pill px-4 py-3 fw-bold shadow-sm w-100 w-md-auto text-center">
+                Passer la commande <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+
+    {% else %}
+    <!-- Affichage si le panier est vide -->
+    <div class="text-center py-5 bg-white rounded-4 shadow-sm p-4">
+        <div class="mb-3">
+            <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center p-4" style="width: 100px; height: 100px;">
+                <i class="bi bi-bag-x fs-1 text-muted"></i>
+            </div>
+        </div>
+        <h3 class="h5 fw-bold text-dark mb-2">Votre panier est vide</h3>
+        <p class="text-muted small mb-4">Découvrez notre carte et ajoutez vos tenders ou burgers préférés !</p>
+        <a href="{% url 'pages:home' %}" class="btn btn-orange rounded-pill px-4 py-2 fw-bold shadow-sm">
+            Voir le Menu 🍗
+        </a>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | Admin Chicken Tenders{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        🍗 Chicken Tenders Admin
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    /* --- DESIGN MODERN DASHBOARD --- */
+    
+    :root {
+        --admin-bg: #F4F6F9;
+        --sidebar-bg: #111C24;
+        --orange-primary: #FF7A00;
+        --card-bg: #FFFFFF;
+        --text-main: #2D3748;
+    }
+
+    body {
+        background-color: var(--admin-bg) !important;
+        font-family: 'Poppins', system-ui, sans-serif !important;
+        color: var(--text-main);
+    }
+
+    /* En-tête supérieur (Header) */
+    #header {
+        background: var(--sidebar-bg) !important;
+        color: #FFFFFF !important;
+        padding: 12px 25px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    #header a:link, #header a:visited {
+        color: var(--orange-primary) !important;
+        font-weight: 600;
+    }
+
+    #branding h1 a {
+        color: #FFFFFF !important;
+        font-size: 1.2rem;
+    }
+
+    /* Conteneur principal et modules (Cartes) */
+    .module {
+        background: var(--card-bg) !important;
+        border-radius: 16px !important;
+        border: none !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+        margin-bottom: 24px !important;
+        overflow: hidden;
+    }
+
+    .module h2, .inline-group h2, caption {
+        background: transparent !important;
+        color: var(--text-main) !important;
+        font-weight: 700 !important;
+        padding: 18px 20px !important;
+        border-bottom: 1px solid #EDF2F7;
+        font-size: 1rem;
+    }
+
+    /* Tableaux de données */
+    table {
+        border-collapse: separate !important;
+        border-spacing: 0 8px !important;
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    th {
+        background: transparent !important;
+        color: #A0AEC0 !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        border: none !important;
+    }
+
+    tr.row1, tr.row2 {
+        background: #FFFFFF !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        border-radius: 12px;
+    }
+
+    td {
+        border: none !important;
+        padding: 14px 12px !important;
+        vertical-align: middle !important;
+    }
+
+    /* Boutons et actions */
+    .button, input[type=submit], input[type=button], .submit-row input {
+        background: var(--orange-primary) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 10px 20px !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
+        transition: transform 0.15s ease;
+    }
+
+    .button:hover {
+        transform: translateY(-1px);
+        background: #E06B00 !important;
+    }
+
+    /* Liens d'action dans les listes */
+    .addlink {
+        color: #38A169 !important;
+        font-weight: 600;
+    }
+    .changelink {
+        color: var(--orange-primary) !important;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}

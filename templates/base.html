@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Chicken Tenders Dakar{% endblock %}</title>
+    <!-- Integration de Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Integration des Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --ct-red: #d90429;
+            --ct-dark: #2b2d42;
+            --ct-yellow: #ffb703;
+        }
+        .bg-ct-red { background-color: var(--ct-red); }
+        .text-ct-red { color: var(--ct-red); }
+        .btn-ct-red { background-color: var(--ct-red); color: white; }
+        .btn-ct-red:hover { background-color: #b8001f; color: white; }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+    <!-- Barre de Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-ct-red sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="{% url 'pages:home' %}">
+                🍗 Chicken Tenders
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'pages:home' %}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'pages:about' %}">À propos</a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-warning fw-bold text-dark rounded-pill px-3">
+                    <i class="bi bi-bag-fill me-1"></i> Panier
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Zone de contenu dynamique -->
+    <main class="flex-grow-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Pied de Page -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-1 fw-bold">Chicken Tenders Dakar 🛵</p>
+            <small class="text-secondary">Poulet ultra-croustillant livré à Mermoz, Almadies, Plateau et partout à Dakar.</small>
+            <p class="small text-secondary mt-2">© {% now "Y" %} Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
