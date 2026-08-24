@@ -1,12 +1,13 @@
 from pathlib import Path
 from decouple import config, Csv
 import os
+from decouple import config
 # 1. Emplacement racine du projet
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # 2. Variables de sécurité (Lues depuis le fichier .env)
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-development-key')
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = True
 ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
 # 3. Applications activées dans le projet
