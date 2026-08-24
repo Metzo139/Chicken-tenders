@@ -101,9 +101,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'ton_vrai_cloud_name',
-    'API_KEY': 'ta_vraie_api_key',
-    'API_SECRET': 'ton_vrai_api_secret',
+    'CLOUD_NAME': 'dnu2uzbsw',
+    'API_KEY': '972289414882153',
+    'API_SECRET': 'o6cMpIkfs7AbDogP1fWQL_u3bt4',
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
