@@ -28,7 +28,7 @@ INSTALLED_APPS = [
 # 4. Middlewares (Sécurité et gestion des fichiers statiques)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Gestion efficace des fichiers CSS/JS
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # <--- Ajoute cette ligne ici
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
