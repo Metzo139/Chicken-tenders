@@ -1,6 +1,6 @@
 from pathlib import Path
 from decouple import config, Csv
-
+import os
 # 1. Emplacement racine du projet
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,6 +11,8 @@ ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
 # 3. Applications activées dans le projet
 INSTALLED_APPS = [
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -86,9 +88,23 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# 10. Fichiers Médias (Photos des plats téléversées via Pillow)
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+
+# Fichiers statiques (CSS, JS)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Fichiers médias (Images uploadées par les utilisateurs)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Type d'identifiant par défaut des modèles
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'ton_vrai_cloud_name',
+    'API_KEY': 'ta_vraie_api_key',
+    'API_SECRET': 'ton_vrai_api_secret',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
