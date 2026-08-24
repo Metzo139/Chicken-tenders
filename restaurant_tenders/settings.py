@@ -65,11 +65,11 @@ WSGI_APPLICATION = 'restaurant_tenders.wsgi.application'
 # 6. Base de données par défaut (SQLite pour le développement local)
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://neondb_owner:npg_xh8I0YpqynOi@ep-little-sunset-aygfv2zh-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
-        conn_max_age=600
+        default=os.environ.get('DATABASE_URL', 'postgresql://neondb_owner:npg_xh8I0YpqynOi@ep-little-sunset-aygfv2zh-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require'),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
-
 # 7. Regles de sécurité des mots de passe
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
