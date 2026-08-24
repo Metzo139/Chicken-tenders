@@ -2,6 +2,7 @@ from pathlib import Path
 from decouple import config, Csv
 import os
 from decouple import config
+import dj_database_url
 # 1. Emplacement racine du projet
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -63,10 +64,10 @@ WSGI_APPLICATION = 'restaurant_tenders.wsgi.application'
 
 # 6. Base de données par défaut (SQLite pour le développement local)
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://neondb_owner:npg_xh8I0YpqynOi@ep-little-sunset-aygfv2zh-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
+        conn_max_age=600
+    )
 }
 
 # 7. Regles de sécurité des mots de passe
